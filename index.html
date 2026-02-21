@@ -3,43 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chạm QR – Mở Lộc Xuân 2026</title>
+<title>Chạm Lì Xì – Mở Lộc Xuân 2026</title>
 
 <style>
 body {
     margin: 0;
     font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(135deg,#b30000,#ff0000);
-    color: white;
+    background: url("back.png") no-repeat center center fixed;
+    background-size: cover;
     text-align: center;
+    color: white;
+}
+
+.overlay {
+    background: rgba(0,0,0,0.55);
+    min-height: 100vh;
+    padding-bottom: 60px;
 }
 
 h1 {
-    margin-top: 40px;
-    font-size: 48px;
+    padding-top: 50px;
+    font-size: 50px;
+    text-shadow: 2px 2px 10px black;
 }
 
 .grid {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 50px;
     flex-wrap: wrap;
-    margin-top: 60px;
+    margin-top: 80px;
 }
 
 .red-envelope {
-    width: 140px;
-    height: 200px;
-    background: gold;
-    border-radius: 12px;
+    width: 180px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: #b30000;
-    font-size: 22px;
-    transition: 0.3s;
+    transition: transform 0.3s ease;
 }
 
 .red-envelope:hover {
@@ -47,8 +46,8 @@ h1 {
 }
 
 .red-envelope.opened {
-    background: #555;
-    color: #ccc;
+    filter: grayscale(100%);
+    opacity: 0.5;
     cursor: not-allowed;
 }
 
@@ -64,30 +63,31 @@ h1 {
 .popup-content {
     background: white;
     color: #b30000;
-    padding: 50px;
+    padding: 60px;
     border-radius: 15px;
-    max-width: 700px;
+    max-width: 800px;
     animation: zoomIn 0.5s ease;
 }
 
 .popup h2 {
-    font-size: 40px;
+    font-size: 42px;
+    margin-bottom: 25px;
 }
 
 .popup p {
-    font-size: 26px;
+    font-size: 28px;
     line-height: 1.6;
 }
 
 .close-btn {
     margin-top: 30px;
-    padding: 10px 25px;
-    font-size: 18px;
+    padding: 12px 30px;
+    font-size: 20px;
     background: #b30000;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 6px;
+    border-radius: 8px;
 }
 
 @keyframes zoomIn {
@@ -99,14 +99,18 @@ h1 {
 
 <body>
 
+<div class="overlay">
+
 <h1>🎉 CHẠM LÌ XÌ – MỞ LỘC XUÂN 🎉</h1>
 
 <div class="grid">
-    <div class="red-envelope" onclick="openLixi(0)">LÌ XÌ</div>
-    <div class="red-envelope" onclick="openLixi(1)">LÌ XÌ</div>
-    <div class="red-envelope" onclick="openLixi(2)">LÌ XÌ</div>
-    <div class="red-envelope" onclick="openLixi(3)">LÌ XÌ</div>
-    <div class="red-envelope" onclick="openLixi(4)">LÌ XÌ</div>
+    <img src="lixi.png" class="red-envelope" onclick="openLixi(0)">
+    <img src="lixi.png" class="red-envelope" onclick="openLixi(1)">
+    <img src="lixi.png" class="red-envelope" onclick="openLixi(2)">
+    <img src="lixi.png" class="red-envelope" onclick="openLixi(3)">
+    <img src="lixi.png" class="red-envelope" onclick="openLixi(4)">
+</div>
+
 </div>
 
 <div class="popup" id="popup">
@@ -143,7 +147,6 @@ content: "Xuân sang rực rỡ ánh vàng,<br>Tài lộc viên mãn, vững và
 
 function openLixi(index) {
     const envelopes = document.querySelectorAll('.red-envelope');
-
     if (envelopes[index].classList.contains('opened')) return;
 
     envelopes[index].classList.add('opened');
