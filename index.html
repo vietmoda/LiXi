@@ -9,11 +9,10 @@
 body {
     margin: 0;
     font-family: "Segoe UI", sans-serif;
-    background: url("background.png") no-repeat center center fixed;
+    background: url("back.png") no-repeat center center fixed;
     background-size: cover;
     text-align: center;
     color: white;
-    overflow: hidden;
 }
 
 h1 {
@@ -70,6 +69,7 @@ h1 {
 
 .popup p {
     font-size: 28px;
+    line-height: 1.6;
 }
 
 .close-btn {
@@ -86,13 +86,6 @@ h1 {
 @keyframes zoomIn {
     from {transform: scale(0.6); opacity: 0;}
     to {transform: scale(1); opacity: 1;}
-}
-
-/* Canvas pháo hoa */
-#fireworks {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
 }
 </style>
 </head>
@@ -117,55 +110,59 @@ h1 {
     </div>
 </div>
 
-<canvas id="fireworks"></canvas>
-
-<audio id="drumSound" src="https://assets.mixkit.co/sfx/preview/mixkit-drum-roll-566.mp3"></audio>
-<audio id="winSound" src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3"></audio>
-
 <script>
-const goldenIndex = Math.floor(Math.random() * 5); // Random vị trí Lộc Vàng
 
-const normalPrizes = [
-"🎉 LỘC BỨT PHÁ 🎉|Xuân về khí thế dâng cao,<br>Đồng lòng bứt phá, tiến vào đỉnh cao.",
-"🎉 LỘC TIÊN PHONG 🎉|Xuân sang mở lối tiên phong,<br>Sáng tạo bứt phá, thành công rạng ngời.",
-"🎉 LỘC KẾT NỐI 🎉|Xuân này kết nối bền lâu,<br>Chung tay xây vững nhịp cầu niềm tin.",
-"🎉 LỘC ĐỒNG TÂM 🎉|Xuân về vững bước đồng tâm,<br>Chung lòng hiệp lực, nâng tầm thành công."
+// Danh sách phần thưởng
+const prizes = [
+{
+title: "🎉 LỘC BỨT PHÁ 🎉",
+content: "Xuân về khí thế dâng cao,<br>Đồng lòng bứt phá, tiến vào đỉnh cao."
+},
+{
+title: "🎉 LỘC TIÊN PHONG 🎉",
+content: "Xuân sang mở lối tiên phong,<br>Sáng tạo bứt phá, thành công rạng ngời."
+},
+{
+title: "🎉 LỘC KẾT NỐI 🎉",
+content: "Xuân này kết nối bền lâu,<br>Chung tay xây vững nhịp cầu niềm tin."
+},
+{
+title: "🎉 LỘC ĐỒNG TÂM 🎉",
+content: "Xuân về vững bước đồng tâm,<br>Chung lòng hiệp lực, nâng tầm thành công."
+},
+{
+title: "🏆 LỘC VÀNG – 500.000đ 🏆",
+content: "Xuân sang rực rỡ ánh vàng,<br>Tài lộc viên mãn, vững vàng thành công!"
+}
 ];
 
-let openedEnvelopes = [false, false, false, false, false];
+// Hàm trộn mảng (shuffle)
+function shuffle(array) {
+for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+}
+return array;
+}
+
+// Tạo mảng phần thưởng đã được random
+const shuffledPrizes = shuffle([...prizes]);
 
 function openLixi(index) {
+const envelopes = document.querySelectorAll('.red-envelope');
+if (envelopes[index].classList.contains('opened')) return;
 
-    if (openedEnvelopes[index]) return; // Không mở lại bao đã mở
+envelopes[index].classList.add('opened');
 
-    openedEnvelopes[index] = true;
-
-    document.getElementById("drumSound").play();
-
-    const envelopes = document.querySelectorAll('.red-envelope');
-    envelopes[index].classList.add('opened');
-
-    let title, content;
-
-    if (index === goldenIndex) {
-        title = "🏆 LỘC VÀNG – 500.000đ 🏆";
-        content = "Xuân sang rực rỡ ánh vàng,<br>Tài lộc viên mãn, vững vàng thành công!";
-        document.getElementById("winSound").play();
-        launchFireworks();
-    } else {
-        const prize = normalPrizes[index % normalPrizes.length].split("|");
-        title = prize[0];
-        content = prize[1];
-    }
-
-    document.getElementById("title").innerHTML = title;
-    document.getElementById("content").innerHTML = content;
-    document.getElementById("popup").style.display = "flex";
+document.getElementById("title").innerHTML = shuffledPrizes[index].title;
+document.getElementById("content").innerHTML = shuffledPrizes[index].content;
+document.getElementById("popup").style.display = "flex";
 }
 
 function closePopup() {
-    document.getElementById("popup").style.display = "none";
+document.getElementById("popup").style.display = "none";
 }
+
 </script>
 
 </body>
