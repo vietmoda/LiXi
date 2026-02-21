@@ -47,7 +47,7 @@ h1 {
 .popup {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.75);
+    background: rgba(0,0,0,0.6);
     display: none;
     justify-content: center;
     align-items: center;
@@ -55,34 +55,35 @@ h1 {
 }
 
 .popup-content {
-    background: #ffffff;
+    background-color: #ffffff !important;   /* Ép nền trắng */
     padding: 70px;
     border-radius: 25px;
     max-width: 850px;
     text-align: center;
     animation: popupZoom 0.4s ease;
     border: 6px solid #d4af37;
-    box-shadow: 0 0 40px rgba(212,175,55,0.5);
+    box-shadow: 0 0 40px rgba(212,175,55,0.6);
 }
 
 /* Khi là LỘC VÀNG */
 .popup-content.gold {
+    background-color: #ffffff !important;
     border: 8px solid gold;
-    box-shadow: 0 0 80px rgba(255,215,0,1);
+    box-shadow: 0 0 100px rgba(255,215,0,1);
     animation: popupZoom 0.4s ease, glowGold 1.2s infinite alternate;
 }
 
 .popup h2 {
     font-size: 48px;
     margin-bottom: 30px;
-    color: #b30000; /* đỏ nổi bật */
+    color: #b30000;
     font-weight: bold;
 }
 
 .popup p {
     font-size: 30px;
     line-height: 1.6;
-    color: #b30000; /* đỏ đồng bộ */
+    color: #b30000;
 }
 
 .close-btn {
@@ -108,7 +109,7 @@ h1 {
 
 @keyframes glowGold {
     from {box-shadow: 0 0 40px rgba(255,215,0,0.6);}
-    to {box-shadow: 0 0 100px rgba(255,215,0,1);}
+    to {box-shadow: 0 0 120px rgba(255,215,0,1);}
 }
 @keyframes zoomIn {
     from {transform: scale(0.6); opacity: 0;}
