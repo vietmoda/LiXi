@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lộc Xuân 2026</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #b30000, #ff0000);
+    color: white;
+    font-family: "Segoe UI", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+h1 {
+    font-size: 60px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.poem {
+    font-size: 40px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.wish {
+    font-size: 28px;
+    opacity: 0.95;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: scale(0.8);}
+    to {opacity: 1; transform: scale(1);}
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🎉 GÓI LỘC BỨT PHÁ 🎉</h1>
+
+    <div class="poem">
+        Xuân về khí thế dâng cao,<br>
+        Đồng lòng bứt phá, tiến vào đỉnh cao.
+    </div>
+
+    <div class="wish">
+        Kính chúc đơn vị một năm tăng tốc mạnh mẽ, bứt phá ngoạn mục và thành công rực rỡ!
+    </div>
+</div>
+
+</body>
+</html>
