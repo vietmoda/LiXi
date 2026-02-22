@@ -28,7 +28,17 @@ h1 {
     margin-top: 100px;
     flex-wrap: wrap;
 }
+.item {
+    text-align: center;
+}
 
+.label {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffd700;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+}
 .red-envelope {
     width: 160px;
     cursor: pointer;
@@ -128,14 +138,36 @@ h1 {
 <h2> VNPT THÁI NGUYÊN </h2>
 <h1>🎉 CHẠM LÌ XÌ – MỞ LỘC XUÂN 🎉</h1>
 
-<div class="grid">
-    <img src="lixi.png" class="red-envelope" onclick="openLixi(0)">
-    <img src="lixi.png" class="red-envelope" onclick="openLixi(1)">
-    <img src="lixi.png" class="red-envelope" onclick="openLixi(2)">
-    <img src="lixi.png" class="red-envelope" onclick="openLixi(3)">
-    <img src="lixi.png" class="red-envelope" onclick="openLixi(4)">
-</div>
 
+<div class="grid">
+
+    <div class="item">
+        <img src="lixi.png" class="red-envelope" onclick="openLixi(0)">
+        <div class="label">Tài Lộc</div>
+    </div>
+    
+    <div class="item">
+        <img src="lixi.png" class="red-envelope" onclick="openLixi(1)">
+        <div class="label">May Mắn</div>
+    </div>
+    
+    <div class="item">
+        <img src="lixi.png" class="red-envelope" onclick="openLixi(2)">
+        <div class="label">Thịnh Vượng</div>
+    </div>
+    
+    <div class="item">
+        <img src="lixi.png" class="red-envelope" onclick="openLixi(3)">
+        <div class="label">Phát Đạt</div>
+    </div>
+    
+    <div class="item">
+        <img src="lixi.png" class="red-envelope" onclick="openLixi(4)">
+        <div class="label">Vàng Son</div>
+    </div>
+
+</div>
+    
 <div class="popup" id="popup">
     <div class="popup-content">
         <h2 id="title"></h2>
