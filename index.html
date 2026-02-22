@@ -175,14 +175,32 @@ return array;
 const shuffledPrizes = shuffle([...prizes]);
 
 function openLixi(index) {
+
 const envelopes = document.querySelectorAll('.red-envelope');
 if (envelopes[index].classList.contains('opened')) return;
 
 envelopes[index].classList.add('opened');
 
-document.getElementById("title").innerHTML = shuffledPrizes[index].title;
-document.getElementById("content").innerHTML = shuffledPrizes[index].content;
-document.getElementById("popup").style.display = "flex";
+const reward = shuffledPrizes[index];
+
+document.getElementById("title").innerHTML = reward.title;
+document.getElementById("content").innerHTML = reward.content;
+
+const popup = document.getElementById("popup");
+const popupBox = document.querySelector(".popup-content");
+
+// reset hiệu ứng vàng
+popupBox.classList.remove("gold");
+
+// phát âm thanh
+if (reward.title.includes("LỘC VÀNG")) {
+    document.getElementById("soundGold").play();
+    popupBox.classList.add("gold");
+} else {
+    document.getElementById("soundOpen").play();
+}
+
+popup.style.display = "flex";
 }
 
 function closePopup() {
@@ -190,6 +208,7 @@ document.getElementById("popup").style.display = "none";
 }
 
 </script>
-
+<audio id="soundOpen" src="https://assets.mixkit.co/sfx/preview/mixkit-positive-notification-951.mp3"></audio>
+<audio id="soundGold" src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3"></audio>
 </body>
 </html>
