@@ -116,7 +116,7 @@ h1 {
 </style>
 </head>
 
-<body>
+<body onclick="startMusic()">
 
 <h1>🎉 CHẠM LÌ XÌ – MỞ LỘC XUÂN 🎉</h1>
 
@@ -174,6 +174,17 @@ return array;
 // Tạo mảng phần thưởng đã được random
 const shuffledPrizes = shuffle([...prizes]);
 
+let musicStarted = false;
+
+function startMusic() {
+    if (!musicStarted) {
+        const bg = document.getElementById("bgMusic");
+        bg.volume = 0.5;   // chỉnh âm lượng
+        bg.play().catch(() => {});
+        musicStarted = true;
+    }
+}
+    
 function openLixi(index) {
 
 const envelopes = document.querySelectorAll('.red-envelope');
@@ -208,7 +219,10 @@ document.getElementById("popup").style.display = "none";
 }
 
 </script>
-<audio id="soundOpen" src="https://assets.mixkit.co/sfx/preview/mixkit-positive-notification-951.mp3"></audio>
-<audio id="soundGold" src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3"></audio>
+    <audio id="bgMusic" loop>
+    <source src="https://assets.mixkit.co/music/preview/mixkit-happy-celebration-128.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="soundOpen" src="https://assets.mixkit.co/sfx/preview/mixkit-positive-notification-951.mp3"></audio>
+    <audio id="soundGold" src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3"></audio>
 </body>
 </html>
