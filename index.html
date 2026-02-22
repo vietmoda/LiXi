@@ -113,11 +113,18 @@ h1 {
     from {transform: scale(0.6); opacity: 0;}
     to {transform: scale(1); opacity: 1;}
 }
+
+#fireworks {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+}
 </style>
 </head>
 
 <body onclick="startMusic()">
-
+<canvas id="fireworks"></canvas>
 <h1>🎉 CHẠM LÌ XÌ – MỞ LỘC XUÂN 🎉</h1>
 
 <div class="grid">
@@ -184,6 +191,53 @@ function startMusic() {
         musicStarted = true;
     }
 }
+
+// ===== PHÁO HOA =====
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+function createFirework(x, y) {
+    for (let i = 0; i < 80; i++) {
+        particles.push({
+            x: x,
+            y: y,
+            angle: Math.random() * Math.PI * 2,
+            speed: Math.random() * 6 + 2,
+            radius: 3,
+            alpha: 1,
+            color: `hsl(${Math.random()*360},100%,50%)`
+        });
+    }
+}
+
+function updateFireworks() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach((p, index) => {
+        p.x += Math.cos(p.angle) * p.speed;
+        p.y += Math.sin(p.angle) * p.speed;
+        p.alpha -= 0.02;
+
+        ctx.globalAlpha = p.alpha;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+
+        if (p.alpha <= 0) {
+            particles.splice(index, 1);
+        }
+    });
+
+    requestAnimationFrame(updateFireworks);
+}
+
+updateFireworks();
     
 function openLixi(index) {
 
@@ -200,16 +254,14 @@ document.getElementById("content").innerHTML = reward.content;
 const popup = document.getElementById("popup");
 const popupBox = document.querySelector(".popup-content");
 
-// reset hiệu ứng vàng
 popupBox.classList.remove("gold");
 
-// phát âm thanh
 if (reward.title.includes("LỘC VÀNG")) {
-    document.getElementById("soundGold").play();
     popupBox.classList.add("gold");
-} else {
-    document.getElementById("soundOpen").play();
 }
+
+// 🎆 BẮN PHÁO HOA
+createFirework(window.innerWidth/2, window.innerHeight/3);
 
 popup.style.display = "flex";
 }
